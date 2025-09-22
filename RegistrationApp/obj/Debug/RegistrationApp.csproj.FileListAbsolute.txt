@@ -1,0 +1,15 @@
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\bin\Debug\RegistrationApp.exe.config
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\bin\Debug\RegistrationApp.exe
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\bin\Debug\RegistrationApp.pdb
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\RegistrationApp.csproj.AssemblyReference.cache
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\App.g.cs
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\RegistrationApp_MarkupCompile.cache
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\RegistrationApp.g.resources
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\RegistrationApp.Properties.Resources.resources
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\RegistrationApp.csproj.GenerateResource.cache
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\RegistrationApp.csproj.CoreCompileInputs.cache
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\RegistrationApp.exe
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\RegistrationApp.pdb
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\RegistrationApp.exe.config
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\Views\MainWindow.baml
+C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\obj\Debug\Views\MainWindow.g.cs
