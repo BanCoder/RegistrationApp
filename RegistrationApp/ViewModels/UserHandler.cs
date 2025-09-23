@@ -1,19 +1,22 @@
 ﻿using RegistrationApp.Model;
-using RegistrationApp.Views;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
-using System.Linq; 
 using System.Windows.Controls;
-using System.Globalization;
 
 namespace RegistrationApp.ViewModels
 {
 	internal class UserHandler
 	{
 		private List<UserData> _users; 
+		private ErrorValidator _errorValidator;
+		public UserHandler()
+		{
+			_errorValidator = new ErrorValidator();
+			_users = new List<UserData>();
+		}
 		public List<UserData> ReadDataFromUi(TextBox firstNameTextBox, TextBox lastNameTextBox, TextBox emailTextBox, PasswordBox passwordBox)
 		{
-			_users = new List<UserData>(); 
 			string name = firstNameTextBox.Text;
 			string surname = lastNameTextBox.Text;
 			string email = emailTextBox.Text;
@@ -23,23 +26,21 @@ namespace RegistrationApp.ViewModels
 		}
 		public bool ErrorHandler(TextBox firstNameTextBox, TextBox lastNameTextBox, TextBox emailTextBox, PasswordBox passwordBox, CheckBox agreementBox)
 		{
-			if (passwordBox.Password.Length < 8 || passwordBox.Password.Length == 0)
+			if (!_errorValidator.ValidatePassword(passwordBox.Password))
 			{
-				MessageBox.Show("Введите пароль!" +
-					"Пароль должен состоять минимум из 8 символов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
-			else if (firstNameTextBox.Text.Length == 0 || !ValidateAndFarmateUserNameAndSername(firstNameTextBox, "имя"))
+			else if (string.IsNullOrEmpty(firstNameTextBox.Text) || !_errorValidator.ValidateAndFarmateUserNameAndSurname(firstNameTextBox, "имя"))
 			{
 				MessageBox.Show("Введите ваше имя!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false; 
 			}
-			else if (lastNameTextBox.Text.Length == 0 || !ValidateAndFarmateUserNameAndSername(lastNameTextBox, "фамилию"))
+			else if (string.IsNullOrEmpty(lastNameTextBox.Text)|| !_errorValidator.ValidateAndFarmateUserNameAndSurname(lastNameTextBox, "фамилию"))
 			{
 				MessageBox.Show("Введите вашу фамилию!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
-			else if (emailTextBox.Text.Length == 0 || !emailTextBox.Text.Contains('@') || !emailTextBox.Text.Contains('.'))
+			else if (string.IsNullOrEmpty(emailTextBox.Text) || !_errorValidator.ValidateEmail(emailTextBox.Text))
 			{
 				MessageBox.Show("Неверно введена почта!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
@@ -49,23 +50,8 @@ namespace RegistrationApp.ViewModels
 				MessageBox.Show("Примите условия использования!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); 
 				return false;
 			}
-				return true;
-		}
-		private bool ValidateAndFarmateUserNameAndSername(TextBox userName, string fieldName)
-		{
-			string name = userName.Text.Trim();
-			if (string.IsNullOrEmpty(name))
-			{
-				MessageBox.Show($"Введите {fieldName}!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-				return false;
-			}
-			if (!name.All(char.IsLetter))
-			{
-				MessageBox.Show($"{fieldName} должен содержать только буквы!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-				return false;
-			}
-			string formattedName = char.ToUpper(name[0]) + name.Substring(1).ToLower();
-			userName.Text = formattedName;
+			MessageBox.Show("Вы зарегистрированы!\n" +
+				"Мы отправили вам на почту сообщение!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information); 
 			return true;
 		}
 	}

@@ -16,6 +16,12 @@ namespace RegistrationApp.Views
 			InitializeComponent();
 			_userHandler = new UserHandler();
 		}
+		/*
+		 * Добавить:
+		 * более тщательная обработка ошибок(спец символы при вводе пароля)
+		 * отправка сообщений на почту пользователю
+		 * бд в json формат
+		*/
 		
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
@@ -24,7 +30,6 @@ namespace RegistrationApp.Views
 			{
 				_fileManager = new FileManager("registration_base.txt", FirstNameTextBox, LastNameTextBox, EmailTextBox,PasswordBox);
 			}
-
 		}
 	}
 }

@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ErrorValidator.cs" />
     <Compile Include="ViewModels\FileManager.cs" />
     <Compile Include="ViewModels\UserHandler.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
