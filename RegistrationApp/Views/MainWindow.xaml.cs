@@ -18,7 +18,6 @@ namespace RegistrationApp.Views
 		}
 		/*
 		 * Добавить:
-		 * более тщательная обработка ошибок(спец символы при вводе пароля)
 		 * отправка сообщений на почту пользователю
 		 * бд в json формат
 		*/
@@ -28,7 +27,7 @@ namespace RegistrationApp.Views
 			bool isInvalid = _userHandler.ErrorHandler(FirstNameTextBox, LastNameTextBox, EmailTextBox, PasswordBox, AgreementCheckBox);
 			if(isInvalid)
 			{
-				_fileManager = new FileManager("registration_base.txt", FirstNameTextBox, LastNameTextBox, EmailTextBox,PasswordBox);
+				_fileManager = new FileManager("registration_base.json", FirstNameTextBox, LastNameTextBox, EmailTextBox,PasswordBox);
 			}
 		}
 	}

@@ -4,6 +4,7 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using Newtonsoft; 
 
 namespace RegistrationApp
 {
@@ -50,7 +51,7 @@ namespace RegistrationApp
 
 			var hasNumber = new Regex(@"[0-9]+");
 			var hasUpperChar = new Regex(@"[A-Z]+");
-			var hasMiniMaxChars = new Regex(@".{8,12}");
+			var hasMiniMaxChars = new Regex(@".{8,16}");
 			var hasLowerChar = new Regex(@"[a-z]+");
 			var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
 

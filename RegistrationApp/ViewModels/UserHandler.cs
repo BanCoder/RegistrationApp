@@ -26,16 +26,13 @@ namespace RegistrationApp.ViewModels
 		}
 		public bool ErrorHandler(TextBox firstNameTextBox, TextBox lastNameTextBox, TextBox emailTextBox, PasswordBox passwordBox, CheckBox agreementBox)
 		{
-			if (!_errorValidator.ValidatePassword(passwordBox.Password))
-			{
-				return false;
-			}
-			else if (string.IsNullOrEmpty(firstNameTextBox.Text) || !_errorValidator.ValidateAndFarmateUserNameAndSurname(firstNameTextBox, "имя"))
+			
+			if (string.IsNullOrEmpty(firstNameTextBox.Text) || !_errorValidator.ValidateAndFarmateUserNameAndSurname(firstNameTextBox, "имя"))
 			{
 				MessageBox.Show("Введите ваше имя!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false; 
 			}
-			else if (string.IsNullOrEmpty(lastNameTextBox.Text)|| !_errorValidator.ValidateAndFarmateUserNameAndSurname(lastNameTextBox, "фамилию"))
+			else if (string.IsNullOrEmpty(lastNameTextBox.Text) || !_errorValidator.ValidateAndFarmateUserNameAndSurname(lastNameTextBox, "фамилию"))
 			{
 				MessageBox.Show("Введите вашу фамилию!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
@@ -43,6 +40,10 @@ namespace RegistrationApp.ViewModels
 			else if (string.IsNullOrEmpty(emailTextBox.Text) || !_errorValidator.ValidateEmail(emailTextBox.Text))
 			{
 				MessageBox.Show("Неверно введена почта!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
+			else if (!_errorValidator.ValidatePassword(passwordBox.Password))
+			{
 				return false;
 			}
 			else if(agreementBox.IsChecked != true)
