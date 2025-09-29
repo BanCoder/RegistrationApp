@@ -1,17 +1,23 @@
-﻿namespace RegistrationApp.Model
+﻿using System.Text.Json.Serialization;
+
+namespace RegistrationApp.Model
 {
 	internal struct UserData
 	{
-		public string _name;
-		public string _surname; 
-		public string _email;
-		public string _password;
+		[JsonPropertyName("Имя пользователя")]
+		public string Name {get; set;}
+		[JsonPropertyName("Фамилия пользователя")]
+		public string Surname { get; set; }
+		[JsonPropertyName("Email")]
+		public string Email { get; set; }
+		[JsonPropertyName("Пароль")]
+		public string Password { get; set; }
 		public UserData(string userName, string userSurname, string email, string password)
 		{
-			_name = userName;
-			_surname = userSurname;
-			_email = email;
-			_password = password;
+			Name = userName;
+			Surname = userSurname;
+			Email = email;
+			Password = password;
 		}
 	}
 }

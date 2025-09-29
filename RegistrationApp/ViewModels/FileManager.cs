@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Controls;
+using System.Text.Json;
+using System.Windows;
+
 
 namespace RegistrationApp.ViewModels
 {
@@ -14,35 +17,29 @@ namespace RegistrationApp.ViewModels
 		{
 			_userHandler = new UserHandler(); 
 			_userData = _userHandler.ReadDataFromUi(firstNameTextBox, lastNameTextBox, emailTextBox, passwordBox); 
-			InputDataToFile(filePath, _userData); 
+			InputDataToJsonFile(filePath, _userData); 
 		}
 		
-		private void InputDataToFile(string filePath, List<UserData> userData)
+		private void InputDataToJsonFile(string filePath, List<UserData> userData)
 		{
 			using (StreamWriter sw = new StreamWriter(filePath, true))
 			{
 				try
 				{
-					if (userData != null)
+					var options = new JsonSerializerOptions()
 					{
-						foreach (var item in userData)
-						{
-							sw.WriteLine($"Имя пользователя: {item._name}\n" +
-								$"Фамилия пользователя: {item._surname}\n" +
-								$"Email: {item._email}\n" +
-								$"Password: {item._password}\n");
-						}
-					}
-					else
-					{
-						sw.WriteLine("Данных не обнаружено!");
-					}
+						WriteIndented = true,
+						Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+					};
+					string json = JsonSerializer.Serialize(userData, options);
+					sw.WriteLine(json);
 				}
 				catch (Exception ex)
 				{
-					sw.WriteLine($"Данные не были загружены!\n{ex.Message}");
+					MessageBox.Show($"Ошибка загрузки данных {ex.Message}");
 				}
 			}
+				
 		}
 	}
 }
