@@ -17,10 +17,10 @@ namespace RegistrationApp.ViewModels
 		{
 			_userHandler = new UserHandler(); 
 			_userData = _userHandler.ReadDataFromUi(firstNameTextBox, lastNameTextBox, emailTextBox, passwordBox); 
-			InputDataToFile(filePath, _userData); 
+			InputDataToJsonFile(filePath, _userData); 
 		}
 		
-		private void InputDataToFile(string filePath, List<UserData> userData)
+		private void InputDataToJsonFile(string filePath, List<UserData> userData)
 		{
 			using (StreamWriter sw = new StreamWriter(filePath, true))
 			{
