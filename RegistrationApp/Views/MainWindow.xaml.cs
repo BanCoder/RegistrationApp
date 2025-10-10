@@ -16,13 +16,12 @@ namespace RegistrationApp.Views
 			InitializeComponent();
 			_userHandler = new UserHandler();
 		}
-		// нумерация id в бд
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			bool isInvalid = _userHandler.ErrorHandler(FirstNameTextBox, LastNameTextBox, EmailTextBox, PasswordBox, AgreementCheckBox);
 			if(isInvalid)
 			{
-				_fileManager = new DataBaseManager("registration_base.json", FirstNameTextBox, LastNameTextBox, EmailTextBox,PasswordBox.Password);
+				_fileManager = new DataBaseManager(FirstNameTextBox, LastNameTextBox, EmailTextBox,PasswordBox.Password);
 				_emailSender = new EmailSender(EmailTextBox.Text, FirstNameTextBox.Text); 
 			}
 		}

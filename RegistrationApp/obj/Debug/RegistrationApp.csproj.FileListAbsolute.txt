@@ -35,7 +35,6 @@ C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\R
 C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\bin\Debug\System.Text.Json.xml
 C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\bin\Debug\System.ValueTuple.xml
-C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\bin\Debug\appsettings.json
 C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\bin\Debug\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\Vladimir\OneDrive\Desktop\Мои разработки\RegistrationApp\RegistrationApp\bin\Debug\Microsoft.Extensions.Configuration.dll

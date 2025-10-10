@@ -12,15 +12,15 @@ namespace RegistrationApp.ViewModels
 		private List<UserData> _userData; 
 		private UserHandler _userHandler;
 		private string _connectionString; 
-		public DataBaseManager(string filePath, TextBox firstNameTextBox, TextBox lastNameTextBox, TextBox emailTextBox,string passwordBox)
+		public DataBaseManager(TextBox firstNameTextBox, TextBox lastNameTextBox, TextBox emailTextBox,string passwordBox)
 		{
 			_userHandler = new UserHandler();
 			string passwordHash = HashPassword(passwordBox);
 			_userData = _userHandler.ReadDataFromUi(firstNameTextBox, lastNameTextBox, emailTextBox, passwordHash);
 			_connectionString = App.SqlSettings.SqlConnection;
-			_ = InputDataToDataBase(filePath, _userData);
+			_ = InputDataToDataBase(_userData);
 		}
-		private async Task InputDataToDataBase(string filePath, List<UserData> userData)
+		private async Task InputDataToDataBase(List<UserData> userData)
 		{
 			NpgsqlConnection connection = new NpgsqlConnection(_connectionString);
 			await connection.OpenAsync();
