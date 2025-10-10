@@ -1,5 +1,4 @@
 ﻿using RegistrationApp.ViewModels;
-using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace RegistrationApp.Views
@@ -9,25 +8,22 @@ namespace RegistrationApp.Views
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private FileManager _fileManager;
+		private DataBaseManager _fileManager;
 		private UserHandler _userHandler;
+		private EmailSender _emailSender;
 		public MainWindow()
 		{
 			InitializeComponent();
 			_userHandler = new UserHandler();
 		}
-		/*
-		 * Добавить:
-		 * отправка сообщений на почту пользователю
-		 * бд в json формат
-		*/
-		
+		// нумерация id в бд
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			bool isInvalid = _userHandler.ErrorHandler(FirstNameTextBox, LastNameTextBox, EmailTextBox, PasswordBox, AgreementCheckBox);
 			if(isInvalid)
 			{
-				_fileManager = new FileManager("registration_base.json", FirstNameTextBox, LastNameTextBox, EmailTextBox,PasswordBox);
+				_fileManager = new DataBaseManager("registration_base.json", FirstNameTextBox, LastNameTextBox, EmailTextBox,PasswordBox.Password);
+				_emailSender = new EmailSender(EmailTextBox.Text, FirstNameTextBox.Text); 
 			}
 		}
 	}

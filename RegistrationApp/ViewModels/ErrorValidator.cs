@@ -4,16 +4,11 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-<<<<<<< HEAD
-=======
-using Newtonsoft; 
->>>>>>> new-bd-branch
-
 namespace RegistrationApp
 {
 	internal class ErrorValidator
 	{
-		public bool ValidateAndFarmateUserNameAndSurname(TextBox userName, string fieldName)
+		public bool ValidateUserNameAndSurname(TextBox userName, string fieldName)
 		{
 			string name = userName.Text.Trim();
 			if (string.IsNullOrEmpty(name))
@@ -44,7 +39,7 @@ namespace RegistrationApp
 		}
 		public bool ValidatePassword(string password)
 		{
-			var input = password;
+			string input = password;
 
 			if (string.IsNullOrWhiteSpace(input))
 			{
@@ -54,11 +49,7 @@ namespace RegistrationApp
 
 			var hasNumber = new Regex(@"[0-9]+");
 			var hasUpperChar = new Regex(@"[A-Z]+");
-<<<<<<< HEAD
-			var hasMiniMaxChars = new Regex(@".{8,12}");
-=======
 			var hasMiniMaxChars = new Regex(@".{8,16}");
->>>>>>> new-bd-branch
 			var hasLowerChar = new Regex(@"[a-z]+");
 			var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
 
