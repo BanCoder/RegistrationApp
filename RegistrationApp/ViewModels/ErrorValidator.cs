@@ -13,12 +13,12 @@ namespace RegistrationApp
 			string name = userName.Text.Trim();
 			if (string.IsNullOrEmpty(name))
 			{
-				MessageBox.Show($"Введите {fieldName}!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Введите {fieldName}!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
 			if (!name.All(char.IsLetter))
 			{
-				MessageBox.Show($"{fieldName} должен содержать только буквы!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"{fieldName} должен содержать только буквы!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
 			string formattedName = char.ToUpper(name[0]) + name.Substring(1).ToLower();
@@ -44,7 +44,7 @@ namespace RegistrationApp
 			if (string.IsNullOrWhiteSpace(input))
 			{
 				MessageBox.Show("Введите пароль!\n" +
-					"Пароль должен состоять минимум из 8 символов!"); 
+					"Пароль должен состоять минимум из 8 символов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); 
 			}
 
 			var hasNumber = new Regex(@"[0-9]+");
