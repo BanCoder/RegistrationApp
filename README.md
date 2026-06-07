@@ -12,7 +12,7 @@ WPF-приложение для регистрации пользователе�
 - SMTP-сервер для отправки email(Gmail, Mail, Yandex)
 
 ### Установка и запуск 🔧
-1. Клонируйте репозиторий
+1. Скачайте архив или клонируйте репозиторий(если установлен git)
    ```bash
    git clone https://github.com/BanCoder/RegistrationApp.git
    cd RegistrationApp
@@ -37,7 +37,7 @@ WPF-приложение для регистрации пользователе�
 		},
 		"Yandex": {
 			"Server": "smtp.yandex.ru",
-			"Port": 587,
+			"Port": 465,
 			"AdminLogin": "your-email@yandex.ru",
 			"Password": "your-app-password"
 		}
@@ -72,7 +72,27 @@ WPF-приложение для регистрации пользователе�
         );
         ```
 4. Запустите программу в Visual Studio 2022
-   
+   - Откройте решение `RegistrationApp.sln`
+   - Нажмите на `F5` или на кнопку `Пуск`
+   - Перейдите в папку `bin\Debug` и запустите .exe файл
+
+### Скриншоты 🖼️
+![MainWindow](screenshots/main-window.png)
+
+*Главное окно*
+
+![FilledWindow](screenshots/filled-window.png)
+
+*Пример заполнения полей*
+
+![Result](screenshots/result.png)
+
+*Результат программы*
+
+![EmailResult](screenshots/email_res.png)
+
+*Почтовое подтверждение*
+
 ### Особенности ✅
 - Валидация данных пользователя
 - Автоматическое сохранение данных о пользователях в PostgreSQL

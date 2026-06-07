@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 namespace RegistrationApp
 {
-	internal class ErrorValidator
+	public class ErrorValidator
 	{
 		public bool ValidateUserNameAndSurname(TextBox userName, string fieldName)
 		{

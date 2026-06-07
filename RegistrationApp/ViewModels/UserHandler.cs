@@ -1,12 +1,11 @@
 ﻿using RegistrationApp.Model;
-using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace RegistrationApp.ViewModels
 {
-	internal class UserHandler
+	public class UserHandler
 	{
 		private List<UserData> _users; 
 		private ErrorValidator _errorValidator;

@@ -1,10 +1,9 @@
 ﻿using Npgsql;
-using System; 
 using RegistrationApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows;
 namespace RegistrationApp.ViewModels
 {
 	public class DataBaseManager
@@ -18,7 +17,19 @@ namespace RegistrationApp.ViewModels
 			string passwordHash = HashPassword(passwordBox);
 			_userData = _userHandler.ReadDataFromUi(firstNameTextBox, lastNameTextBox, emailTextBox, passwordHash);
 			_connectionString = App.SqlSettings.SqlConnection;
-			_ = InputDataToDataBase(_userData);
+		}
+		public async Task<bool> SaveToDatabaseAsync()
+		{
+			try
+			{
+				await InputDataToDataBase(_userData);
+				return true;
+			}
+			catch (Exception ex)
+			{
+				System.Windows.MessageBox.Show($"Ошибка БД: {ex.Message}");
+				return false;
+			}
 		}
 		private async Task InputDataToDataBase(List<UserData> userData)
 		{

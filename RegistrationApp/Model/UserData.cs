@@ -2,7 +2,7 @@
 
 namespace RegistrationApp.Model
 {
-	internal struct UserData
+	public struct UserData
 	{
 		[JsonPropertyName("Имя пользователя")]
 		public string Name {get; set;}

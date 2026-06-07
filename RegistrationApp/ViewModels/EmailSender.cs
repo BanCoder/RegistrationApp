@@ -1,24 +1,30 @@
-﻿using RegistrationApp.Model;
+﻿using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Security;
+using RegistrationApp.Model;
 using System;
-using System.Net;
 using System.Net.Mail;
-
+using System.Threading.Tasks;
 namespace RegistrationApp.ViewModels
 {
-	internal class EmailSender
+	public class EmailSender
 	{
+		private string _userLogin;
+		private string _userName;
 		public EmailSender(string userLogin, string userName)
 		{
-			SendEmail(userLogin, userName); 
+			_userLogin = userLogin;
+			_userName = userName;
 		}
-		private void SendEmail(string userLogin, string userName)
+		public async Task SendEmailAsync()
 		{
-			string emailDomain = GetEmailDomain(userLogin);
+			string emailDomain = GetEmailDomain(_userLogin);
 			SmtpConfiguration config = new SmtpConfiguration();
+
 			switch (emailDomain)
 			{
 				case "gmail.com":
-					config = App.Settings.Gmail; 
+					config = App.Settings.Gmail;
 					break;
 				case "mail.ru":
 					config = App.Settings.MailRu;
@@ -29,24 +35,38 @@ namespace RegistrationApp.ViewModels
 				default:
 					throw new ArgumentException("Неподдерживаемый почтовый индекс!");
 			}
-			using (SmtpClient smtpClient = new SmtpClient(config.Server, config.Port))
+			var emailMessage = new MimeMessage();
+			emailMessage.From.Add(new MailboxAddress("", config.AdminLogin));
+			emailMessage.To.Add(new MailboxAddress("", _userLogin));
+			emailMessage.Subject = "Подтверждение регистрации в форме";
+			emailMessage.Body = new TextPart("plain")
 			{
-				smtpClient.Credentials = new NetworkCredential(config.AdminLogin, config.Password);
-				smtpClient.EnableSsl = true;
-				using (MailMessage mailMessage = new MailMessage())
+				Text = $"Здравствуйте, {_userName}!\r\nЕсли вы видите это сообщение - значит регистрация прошла успешно."
+			};
+			using (var smtpClient = new MailKit.Net.Smtp.SmtpClient())
+			{
+				if (config.Port == 465)
 				{
-					mailMessage.From = new MailAddress(config.AdminLogin);
-					mailMessage.To.Add(userLogin);
-					mailMessage.Subject = "Подтверждение регистрации в форме";
-					mailMessage.Body = $"Здравствуйте, {userName}!\r\nЕсли вы видите это сообщение - значит регистрация прошла успешно.";
-					smtpClient.Send(mailMessage);
+					await smtpClient.ConnectAsync(config.Server, config.Port, true);
 				}
+				else if (config.Port == 587)
+				{
+					await smtpClient.ConnectAsync(config.Server, config.Port, SecureSocketOptions.StartTls);
+				}
+				else
+				{
+					await smtpClient.ConnectAsync(config.Server, config.Port, true);
+				}
+
+				await smtpClient.AuthenticateAsync(config.AdminLogin, config.Password);
+				await smtpClient.SendAsync(emailMessage);
+				await smtpClient.DisconnectAsync(true);
 			}
 		}
 		private string GetEmailDomain(string email)
 		{
 			MailAddress mailAddress = new MailAddress(email);
-			return mailAddress.Host; 
+			return mailAddress.Host;
 		}
 	}
 }
